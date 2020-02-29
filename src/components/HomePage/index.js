@@ -1,6 +1,9 @@
+// The component for the home page.
+
 import React, { useState } from 'react';
-import { Container, Row, Col, Media, Form, Button } from 'react-bootstrap';
+import { Container, Row, Col, Media, Form, Button, InputGroup } from 'react-bootstrap';
 import SearchResults from './SearchResults';
+//import {FontAwesome, FontAwesomeIcon} from 'react-fontawesome';
 
 const HomePage = (props) => {
     return (
@@ -13,7 +16,9 @@ const HomePage = (props) => {
                         <Form>
                             <Form.Group controlId="basic">
                                 <Form.Label>Enter Restaurant</Form.Label>
+                                
                                 <Form.Control placeholder="Restaurant" />
+                                
                             </Form.Group>
 
                             <Form.Group controlId="basic">

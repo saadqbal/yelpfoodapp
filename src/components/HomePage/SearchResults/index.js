@@ -1,3 +1,5 @@
+// The component that appears when you click 'Submit' on the main page.
+
 import React, { useState } from 'react';
 import { Container, Row, Col, Button, Card } from 'react-bootstrap';
 import './style.css';
