@@ -1,11 +1,13 @@
 // The component for the home page.
 
 import React, { useState } from 'react';
-import { Container, Row, Col, Media, Form, Button, InputGroup } from 'react-bootstrap';
+import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 import SearchResults from './SearchResults';
 //import {FontAwesome, FontAwesomeIcon} from 'react-fontawesome';
 import axios from 'axios';
+
 const anywhere = 'https://cors-anywhere.herokuapp.com/';
+const API_KEY = '';
 
 const HomePage = (props) => {
     let [restaurant, setRestaurant] = useState("");
@@ -15,12 +17,13 @@ const HomePage = (props) => {
     const onChangeRestaurant = (event) => {
         setRestaurant(event.target.value);
     }
+
     const onChangeLocation = (event) => {
         setLocation(event.target.value);
     }
+
     const searchRestaurant = (event) => {
         console.log(restaurant, location);
-        const API_KEY = '';
 
         axios.get(`${anywhere}https://api.yelp.com/v3/businesses/search?term=${restaurant}&categories=food&location=${location}`, {
             headers: {
@@ -57,7 +60,7 @@ const HomePage = (props) => {
                         <Button variant="primary" onClick={searchRestaurant}>Submit</Button>
                     </Col>
                 </Row>
-                {/* If restaurantsList length > 0, show SearchResults */}
+                {/* If restaurantsList length > 0, show SearchResults, otherwise don't show */}
                 { restaurantsList.length > 0 ? <SearchResults restaurantsList={restaurantsList} /> : null   }
             </Container>
         </div>

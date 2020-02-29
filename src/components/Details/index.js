@@ -1,22 +1,31 @@
 // The component for when you click 'More information' on a specific restaurant.
 
-import React, { useState } from 'react';
-import { Container, Row, Col, Media, Form, Button } from 'react-bootstrap';
+import React from 'react';
+import { Container, Row, Col, } from 'react-bootstrap';
+import { useLocation } from 'react-router-dom';
 
 const Details = (props) => {
+  let location = useLocation();
+
+  const restaurant = location.state.detailsObject;
+  console.log(restaurant);
+  
+  let Cuisines = restaurant.categories.map((item, key) =>
+    <p key={key}>{item.title}</p>
+  );
+
   return (
     <div>
       <Container>
         {/* Restaurant Images */}
         <Row className="justify-content-md-center">
-          <img src="https://emerilsrestaurants.com/wp-content/uploads/2017/05/photo-1-1-500x400.jpg" />
-          <img src="https://emerilsrestaurants.com/wp-content/uploads/2017/05/photo-1-1-500x400.jpg" />
+          <img alt="restaurant" src={restaurant.image_url} height="400" width="700" />
         </Row>
         <br />
 
         {/* Restaurant Title */}
         <Row className="justify-content-md-center">
-          <h1>Restaurant Title</h1>
+          <h1>{restaurant.name}</h1>
         </Row>
 
         {/* Google Maps */}
@@ -26,7 +35,7 @@ const Details = (props) => {
 
         {/* Cuisines */}
         <Row className="justify-content-md-center">
-        <p>Cuisines: </p>
+        <p>Cuisines: {Cuisines}</p>
         </Row>
 
         {/* Info */}
@@ -39,7 +48,7 @@ const Details = (props) => {
         <Col>
         <p>Address:</p>
         <p>Phone number:</p>
-        <a href="">Yelp Link</a>
+        <a href="google.com">Yelp Link</a>
         </Col>
         </Row>
 

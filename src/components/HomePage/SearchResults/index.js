@@ -1,12 +1,18 @@
 // The component that appears when you click 'Submit' on the main page.
 
-import React, { useState } from 'react';
-import { Container, Row, Col, Button, Card } from 'react-bootstrap';
+import React, { } from 'react';
+import { useHistory } from 'react-router-dom';
+import { Container, Row, Button, Card } from 'react-bootstrap';
 import './style.css';
 
 const SearchResults = (props) => {
-    let restaurantDetails = (event) => {
-        console.log("details");
+    let history = useHistory();
+
+    function restaurantDetails(item) {
+        history.push('/details', {
+            // detailsobject prop
+            detailsObject: item
+        });
     }
 
     let Restaurants = props.restaurantsList.map((item, key) =>
@@ -15,13 +21,15 @@ const SearchResults = (props) => {
             <Card.Body>
                 <Card.Title>{item.name}</Card.Title>
                 <Card.Text>
-                {item.location.address1}, {item.location.city}, {item.location.state} {item.location.zip_code}
-                            </Card.Text>
-                <Button onClick={restaurantDetails} variant="primary">More information</Button>
+                    {item.location.address1}, {item.location.city}, {item.location.state} {item.location.zip_code}
+                </Card.Text>
+                <Button onClick={() => {
+                    restaurantDetails(item);
+                }} variant="primary">More information</Button>
             </Card.Body>
         </Card>
     );
-    
+
     return (
         <div>
             <br />
