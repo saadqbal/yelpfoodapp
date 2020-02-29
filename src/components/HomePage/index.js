@@ -4,8 +4,35 @@ import React, { useState } from 'react';
 import { Container, Row, Col, Media, Form, Button, InputGroup } from 'react-bootstrap';
 import SearchResults from './SearchResults';
 //import {FontAwesome, FontAwesomeIcon} from 'react-fontawesome';
+import axios from 'axios';
+const anywhere = 'https://cors-anywhere.herokuapp.com/';
 
 const HomePage = (props) => {
+    let [restaurant, setRestaurant] = useState("");
+    let [location, setLocation] = useState("");
+    let [restaurantsList, setRestaurantsList] = useState([]);
+
+    const onChangeRestaurant = (event) => {
+        setRestaurant(event.target.value);
+    }
+    const onChangeLocation = (event) => {
+        setLocation(event.target.value);
+    }
+    const searchRestaurant = (event) => {
+        console.log(restaurant, location);
+        const API_KEY = '';
+
+        axios.get(`${anywhere}https://api.yelp.com/v3/businesses/search?term=${restaurant}&categories=food&location=${location}`, {
+            headers: {
+                Authorization: `Bearer ${API_KEY}`
+            }
+        }).then((res) => {
+            console.log("Response: ", res.data.businesses);
+            setRestaurantsList(res.data.businesses);
+        }).catch((err) => {
+            console.log("Error occured: ", err);
+        })
+    }
     return (
         <div>
             <Container>
@@ -16,21 +43,22 @@ const HomePage = (props) => {
                         <Form>
                             <Form.Group controlId="basic">
                                 <Form.Label>Enter Restaurant</Form.Label>
-                                
-                                <Form.Control placeholder="Restaurant" />
-                                
+
+                                <Form.Control onChange={onChangeRestaurant} placeholder="Restaurant" />
+
                             </Form.Group>
 
                             <Form.Group controlId="basic">
                                 <Form.Label>Enter Location</Form.Label>
-                                <Form.Control placeholder="Location (i.e. Atlanta, GA)" />
+                                <Form.Control onChange={onChangeLocation} placeholder="Location (i.e. Atlanta, GA)" />
                             </Form.Group>
                         </Form>
 
-                        <Button variant="primary">Submit</Button>
+                        <Button variant="primary" onClick={searchRestaurant}>Submit</Button>
                     </Col>
                 </Row>
-                <SearchResults />
+                {/* If restaurantsList length > 0, show SearchResults */}
+                { restaurantsList.length > 0 ? <SearchResults restaurantsList={restaurantsList} /> : null   }
             </Container>
         </div>
     );
