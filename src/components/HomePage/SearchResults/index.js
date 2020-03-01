@@ -10,22 +10,27 @@ const SearchResults = (props) => {
 
     function restaurantDetails(item) {
         history.push('/details', {
-            // detailsobject prop
+            // Link to /details and pass in detailsObject/item as a prop
             detailsObject: item
         });
     }
 
+    // Map function to loop through the array of items and displays a card for each restaurant
     let Restaurants = props.restaurantsList.map((item, key) =>
         <Card key={key} className="card-margin">
             <Card.Img variant="top" src={item.image_url} height="250" />
             <Card.Body>
                 <Card.Title>{item.name}</Card.Title>
                 <Card.Text>
-                    {item.location.address1}, {item.location.city}, {item.location.state} {item.location.zip_code}
+                    Location: {item.location.address1}, {item.location.city}, {item.location.state} {item.location.zip_code}
                 </Card.Text>
-                <Button onClick={() => {
-                    restaurantDetails(item);
-                }} variant="primary">More information</Button>
+                <Card.Text>Rating: {item.rating} / 5</Card.Text>
+                <Card.Text>Phone: {item.display_phone}</Card.Text>
+                {/* TODO: Move button to same location */}
+                <Button onClick={
+                    () => {
+                        restaurantDetails(item);
+                    }} variant="primary">More information</Button>
             </Card.Body>
         </Card>
     );
@@ -39,7 +44,6 @@ const SearchResults = (props) => {
                     {/* The cards that will display the restaurant information */}
                     {Restaurants}
                 </Row>
-
             </Container>
         </div>
     );
