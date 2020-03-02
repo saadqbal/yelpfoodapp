@@ -3,6 +3,32 @@
 import React from 'react';
 import { Container, Row, Col, } from 'react-bootstrap';
 import { useLocation } from 'react-router-dom';
+import { Map, GoogleApiWrapper, InfoWindow, Marker } from 'google-maps-react';
+
+// Enter your own Google Maps API key here
+const API_KEY = '';
+
+let state = {
+  showingInfoWindow: false,  //Hides or the shows the infoWindow
+  activeMarker: {},          //Shows the active marker upon click
+  selectedPlace: {}          //Shows the infoWindow to the selected place upon a marker
+};
+
+let onMarkerClick = (props, marker, e) =>
+  state.setState({
+    selectedPlace: props,
+    activeMarker: marker,
+    showingInfoWindow: true
+  });
+
+let onClose = props => {
+  if (state.showingInfoWindow) {
+    state.setState({
+      showingInfoWindow: false,
+      activeMarker: null
+    });
+  }
+};
 
 const Details = (props) => {
   // Create location object
@@ -16,6 +42,12 @@ const Details = (props) => {
   let Cuisines = restaurant.categories.map((item, key) =>
     <p key={key}>{item.title}</p>
   );
+
+  const mapStyles = {
+    width: '50%',
+    height: '50%',
+    margin: 'auto'
+  };
 
   return (
     <div>
@@ -34,6 +66,24 @@ const Details = (props) => {
         {/* Google Maps */}
         <Row className="justify-content-md-center">
         <p>Map</p>
+        <Map
+        google={props.google}
+        style={mapStyles}
+        zoom={20}
+        initialCenter={{
+         lat: restaurant.coordinates.latitude,
+         lng: restaurant.coordinates.longitude
+        }}
+        />
+        <Marker
+          onClick={onMarkerClick}
+          name={'Kenyatta International Convention Centre'}
+        />
+        <InfoWindow
+          marker={state.activeMarker}
+          visible={state.showingInfoWindow}
+          onClose={onClose}
+        ></InfoWindow>
         </Row>
 
         {/* Cuisines */}
@@ -66,4 +116,6 @@ const Details = (props) => {
   );
 }
 
-export default Details;
+export default GoogleApiWrapper({
+  apiKey: 'AIzaSyBKkqON7yV0e9pLsxgZeoR8l917lbOEOrU'
+})(Details);

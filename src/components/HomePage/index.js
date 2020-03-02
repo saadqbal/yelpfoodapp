@@ -1,4 +1,6 @@
 // The component for the home page.
+// TODO: Move SearchResults button to bottom, make GET to businesses/search, 
+// add Google Maps, add HTML5 Geolocation
 
 import React, { useState } from 'react';
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
