@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/yelpfoodapp/static/css/main.033a7a98.chunk.css",
+    "main.js": "/yelpfoodapp/static/js/main.f6c1afc3.chunk.js",
+    "main.js.map": "/yelpfoodapp/static/js/main.f6c1afc3.chunk.js.map",
+    "runtime-main.js": "/yelpfoodapp/static/js/runtime-main.b5b81f13.js",
+    "runtime-main.js.map": "/yelpfoodapp/static/js/runtime-main.b5b81f13.js.map",
+    "static/css/2.47e06e2e.chunk.css": "/yelpfoodapp/static/css/2.47e06e2e.chunk.css",
+    "static/js/2.f96ef846.chunk.js": "/yelpfoodapp/static/js/2.f96ef846.chunk.js",
+    "static/js/2.f96ef846.chunk.js.map": "/yelpfoodapp/static/js/2.f96ef846.chunk.js.map",
+    "index.html": "/yelpfoodapp/index.html",
+    "precache-manifest.cf7ed68d1fe91249812691796f394b8e.js": "/yelpfoodapp/precache-manifest.cf7ed68d1fe91249812691796f394b8e.js",
+    "service-worker.js": "/yelpfoodapp/service-worker.js",
+    "static/css/2.47e06e2e.chunk.css.map": "/yelpfoodapp/static/css/2.47e06e2e.chunk.css.map",
+    "static/css/main.033a7a98.chunk.css.map": "/yelpfoodapp/static/css/main.033a7a98.chunk.css.map",
+    "static/js/2.f96ef846.chunk.js.LICENSE.txt": "/yelpfoodapp/static/js/2.f96ef846.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.b5b81f13.js",
+    "static/css/2.47e06e2e.chunk.css",
+    "static/js/2.f96ef846.chunk.js",
+    "static/css/main.033a7a98.chunk.css",
+    "static/js/main.f6c1afc3.chunk.js"
+  ]
+}
